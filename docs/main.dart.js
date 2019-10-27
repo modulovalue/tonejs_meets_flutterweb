@@ -34818,7 +34818,7 @@ aJ:function(){return new F.Kt(C.o)}}
 F.Kt.prototype={
 M:function(a){var u,t,s,r=this,q=null,p=[N.bg],o=H.b([],p)
 o.push(new T.cI(q,8,q,q))
-for(u=U.Wz("Tone.js & Flutter Web Piano Demo","todo"),t=0;t<5;++t)o.push(u[t])
+for(u=U.Wz("Tone.js & Flutter Web Piano Demo","tonejs_meets_flutterweb"),t=0;t<5;++t)o.push(u[t])
 o.push(new T.cI(q,12,q,q))
 o.push(L.ks("Size: "+J.O0(r.d),q,q))
 o.push(new T.en(C.ns,M.mv(q,new R.oX(r.d,new F.KB(r),28,100,q),q,q,q,40,q,q,q),q))

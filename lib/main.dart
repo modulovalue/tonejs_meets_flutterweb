@@ -34,7 +34,7 @@ class _TestState extends State<Test> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 8.0),
-          ...modulovalueTitle("Tone.js & Flutter Web Piano Demo", "todo"),
+          ...modulovalueTitle("Tone.js & Flutter Web Piano Demo", "tonejs_meets_flutterweb"),
           SizedBox(height: 12.0),
           Text("Size: ${width.round()}"),
           Padding(
