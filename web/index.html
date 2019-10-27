@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>tonejs_meets_flutterweb</title>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.4.9/Tone.js" type="application/javascript"></script>
+  <script src="main.dart.js" type="application/javascript"></script>
+  <script>
+    function a(note, duration) {
+      var synth = new Tone.Synth().toDestination();
+      synth.triggerAttackRelease(note, duration);
+    }
+  </script>
+</body>
+</html>
