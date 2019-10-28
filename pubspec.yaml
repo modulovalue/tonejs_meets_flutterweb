@@ -23,9 +23,6 @@ dependencies:
     git:
       url: git://github.com/modulovalue/modulovalue_project_widgets.git
       ref: 19d34e2be61bd27f57d4df979fcc1cb83779ee38
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
 
 dev_dependencies:
   flutter_test:

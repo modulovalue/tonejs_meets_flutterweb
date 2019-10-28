@@ -34,7 +34,8 @@ class _TestState extends State<Test> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 8.0),
-          ...modulovalueTitle("Tone.js & Flutter Web Piano Demo", "tonejs_meets_flutterweb"),
+          ...modulovalueTitle(
+              "Tone.js & Flutter Web Piano Demo", "tonejs_meets_flutterweb"),
           SizedBox(height: 12.0),
           Text("Size: ${width.round()}"),
           Padding(
@@ -51,67 +52,67 @@ class _TestState extends State<Test> {
           ),
           Expanded(
             child: Scrollbar(
-              child: SingleChildScrollView(
+              child: ListView(
                 scrollDirection: Axis.horizontal,
-                child: Stack(
-                  children: <Widget>[
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        ...List.generate(10, (i) {
-                          return ["C", "D", "E", "F", "G", "A", "B"]
-                              .map((char) {
-                            return WhiteKey(
-                              text: Text(
-                                "$char$i",
-                                textAlign: TextAlign.center,
-                              ),
-                              onTap: () =>
-                                  js.context.callMethod("a", ["$char$i", "8n"]),
-                              width: width,
-                            );
-                          });
-                        }).expand((a) => a),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: width / 2),
-                      child: LayoutBuilder(builder: (context, constraints) {
-                        return Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            ...List.generate(10, (i) {
-                              return ["C#", "D#", null, "F#", "G#", "A#", null]
-                                  .map((char) {
-                                if (char == null)
-                                  return SizedBox(width: width, height: 0.0);
-
-                                return BlackKey(
-                                  offsetToTheBottom:
-                                      constraints.biggest.height * 0.3,
-                                  onTap: () => js.context
-                                      .callMethod("a", ["$char$i", "8n"]),
-                                  width: width,
-                                  text: Text(
-                                    "$char$i",
-                                    style: TextStyle(color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                );
-                              });
-                            }).expand((a) => a),
-                          ],
-                        );
-                      }),
-                    ),
-                  ],
-                ),
+                children: List.generate(10, (octave) => Octave(width, octave)),
               ),
             ),
           ),
         ],
       ),
     ));
+  }
+}
+
+class Octave extends StatelessWidget {
+  final double width;
+  final int octave;
+
+  const Octave(this.width, this.octave);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: ["C", "D", "E", "F", "G", "A", "B"].map((char) {
+            return WhiteKey(
+              text: Text(
+                "$char$octave",
+                textAlign: TextAlign.center,
+              ),
+              onTap: () =>
+                  js.context.callMethod("playNote", ["$char$octave", "8n"]),
+              width: width,
+            );
+          }).toList(),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: width / 2),
+          child: LayoutBuilder(builder: (context, constraints) {
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: ["C#", "D#", null, "F#", "G#", "A#"].map((char) {
+                if (char == null) return SizedBox(width: width, height: 0.0);
+
+                return BlackKey(
+                  offsetToTheBottom: constraints.biggest.height * 0.3,
+                  onTap: () =>
+                      js.context.callMethod("playNote", ["$char$octave", "8n"]),
+                  width: width,
+                  text: Text(
+                    "$char$octave",
+                    style: TextStyle(color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                );
+              }).toList(),
+            );
+          }),
+        ),
+      ],
+    );
   }
 }
 

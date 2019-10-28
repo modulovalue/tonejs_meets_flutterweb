@@ -2,13 +2,17 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="og:title" property="og:title" content="Tone.js & Flutter Web Piano Demo">
+  <meta name="og:description" property="og:description" content="Tone.js & Flutter Web Piano Demo">
+  <meta name="description" content="Tone.js & Flutter Web Piano Demo">
+  <meta name="og:type" property="og:type" content="website" />
   <title>tonejs_meets_flutterweb</title>
 </head>
 <body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.4.9/Tone.js" type="application/javascript"></script>
   <script src="main.dart.js" type="application/javascript"></script>
   <script>
-    function a(note, duration) {
+    function playNote(note, duration) {
       var synth = new Tone.Synth().toDestination();
       synth.triggerAttackRelease(note, duration);
     }
